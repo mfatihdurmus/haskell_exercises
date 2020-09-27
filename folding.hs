@@ -35,6 +35,6 @@ sumApplyCompose = sum . replicate 5 . max 6 $ 7
 fncompose :: Double -> Integer
 fncompose = ceiling . negate . tan . cos . max 50
 
-
+ 
 oddSquareSum :: Integer  
 oddSquareSum = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]  
