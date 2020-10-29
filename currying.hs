@@ -17,7 +17,7 @@ tenDividedBy = (10/)
 -- tenDividedBy x = 10/x
 
 isUpperAlphaNum :: Char -> Bool
-isUpperAlphaNum x = elem x ['A'..'Z']
+isUpperAlphaNum x = x `elem` ['A'..'Z']
 
 isUpperAlphaNum' :: Char -> Bool
 isUpperAlphaNum' = (`elem` ['A'..'Z'])
@@ -33,7 +33,7 @@ applyTwice f x = f (f x)
 zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
 zipWith' _ _ [] = []
 zipWith' _ [] _ = []
-zipWith'  f (x:xs) (y:ys) = (f x y):zipWith' f xs ys
+zipWith'  f (x:xs) (y:ys) = f x y:zipWith' f xs ys
 
 -- zipWith' max [534,232,454] [654,34,200]
 

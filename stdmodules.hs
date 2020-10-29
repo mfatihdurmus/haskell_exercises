@@ -15,7 +15,7 @@ concatTest = concat ["Foo", "Bar", "Baz"]
 iterateTest :: [Integer]
 iterateTest = take 10 $ iterate (*2) 1
 
-splitTest :: [Char]
+splitTest :: String
 splitTest = b ++ a where (a,b) = splitAt 3 "foobar"
 
 

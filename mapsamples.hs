@@ -13,12 +13,12 @@ phoneBook =
 
 --without lambda
 findKey :: Eq a => a -> [(a, c)] -> c
-findKey key xs = snd . head . filter p $ xs
-    where p x = (fst x) == key
+findKey key = snd . head . filter p
+    where p x = fst x == key
 
 --with lambda
 findKey' :: Eq a => a -> [(a, c)] -> c
-findKey' key xs = snd . head . filter (\x -> (fst x) == key) $ xs
+findKey' key = snd . head . filter (\ x -> fst x == key)
 
 --with matching
 findkeym :: Eq t => t -> [(t, a)] -> Maybe a
@@ -29,7 +29,7 @@ findkeym key ((k,v):xs)
 
 --with foldr
 findKeyf :: (Foldable t, Eq a1) => a1 -> t (a1, a2) -> Maybe a2
-findKeyf key x = foldr (\(k,v) acc -> if k == key then Just v else acc) Nothing x 
+findKeyf key = foldr (\(k,v) acc -> if k == key then Just v else acc) Nothing
 
 -- lookup "patsy" phoneBook
 

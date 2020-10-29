@@ -7,22 +7,22 @@ sumfold' = foldl (+) 0
 -- >>> sumfold' [1,4,2,5]
 
 mapfold :: Foldable t1 => (t2 -> a) -> t1 t2 -> [a]
-mapfold f xs = foldr (\x acc -> f x : acc) [] xs
+mapfold f = foldr (\ x acc -> f x : acc) []
 
 
 maxfold :: (Foldable t, Ord a, Num a) => t a -> a
 maxfold xs = foldl (\x acc -> if acc > x then acc else x) 0 xs
 
 reversefold :: Foldable t => t a -> [a]
-reversefold xs = foldl (\x acc -> acc : x) [] xs
+reversefold = foldl (flip (:)) []
 
 
 productfold :: (Foldable t, Num b) => t b -> b
-productfold xs = foldl (*) 1 xs
+productfold = foldl (*) 1
 
 -- accumulator status
 productscan :: Num b => [b] -> [b]
-productscan xs = scanl (*) 1 xs
+productscan = scanl (*) 1
 
 
 sqrtSums :: Int

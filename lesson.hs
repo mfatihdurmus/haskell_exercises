@@ -46,7 +46,7 @@ recArrayLength [] = 0
 recArrayLength (_:xs) = 1 + recArrayLength xs
 
 -- Guards
-bmiTell :: (Ord a, Fractional a) => a -> [Char]
+bmiTell :: (Ord a, Fractional a) => a -> String
 bmiTell bmi
     | bmi <= 18.5 = "Underweight"
     | bmi <= 25.0 = "Normal"
@@ -56,7 +56,7 @@ bmiCalc :: Fractional a => a -> a -> a
 bmiCalc weight height = weight / (height ^ 2)
 
 -- Where
-bmiTell' :: (Ord a, Fractional a) => a -> a -> [Char]
+bmiTell' :: (Ord a, Fractional a) => a -> a -> String
 bmiTell' weight height 
     | bmi <= underweight = "Underweight"
     | bmi <= normal = "Normal"
@@ -66,7 +66,7 @@ bmiTell' weight height
             normal = 25
 
 -- Where with tuples
-bmiTellTuples :: (Ord a, Fractional a) => a -> a -> [Char]
+bmiTellTuples :: (Ord a, Fractional a) => a -> a -> String
 bmiTellTuples weight height 
     | bmi <= underweight = "Underweight"
     | bmi <= normal = "Normal"
@@ -75,7 +75,7 @@ bmiTellTuples weight height
 
 -- Pattern matching in where
 initials :: [a] -> [a] -> [a]
-initials firstname lastname = [f] ++ [l]
+initials firstname lastname = [f, l]
     where   (f:_) = firstname
             (l:_) = lastname
 
@@ -106,6 +106,6 @@ calcMultipleBmiLet xs = [bmi | (w,h) <- xs, let bmi = w / (h ^ 2)]
 describeList :: [a] -> String
 describeList xs = "The list is " ++ what xs
     where what xs = case xs of  [] -> "Empty"
-                                [x] -> "Singleton"
-                                xs -> "List"
+                                [_] -> "Singleton"
+                                _ -> "List"
 
