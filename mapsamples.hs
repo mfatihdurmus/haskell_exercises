@@ -1,6 +1,9 @@
 
 
-phoneBook :: [(String, String)]
+type PhoneNumber = String  
+type Name = String  
+type PhoneBook = [(Name,PhoneNumber)]  
+phoneBook :: PhoneBook
 phoneBook =   
     [("betty","555-2938")  
     ,("bonnie","452-2928")  
@@ -12,24 +15,28 @@ phoneBook =
 
 
 --without lambda
-findKey :: Eq a => a -> [(a, c)] -> c
+findKey :: Name -> PhoneBook -> PhoneNumber
 findKey key = snd . head . filter p
     where p x = fst x == key
 
 --with lambda
-findKey' :: Eq a => a -> [(a, c)] -> c
+findKey' :: Name -> PhoneBook -> PhoneNumber
 findKey' key = snd . head . filter (\ x -> fst x == key)
 
 --with matching
-findkeym :: Eq t => t -> [(t, a)] -> Maybe a
+findkeym :: Name -> PhoneBook -> Maybe PhoneNumber
 findkeym _key [] = Nothing
 findkeym key ((k,v):xs) 
     | key == k  = Just v
     | otherwise = findkeym key xs
 
 --with foldr
-findKeyf :: (Foldable t, Eq a1) => a1 -> t (a1, a2) -> Maybe a2
+findKeyf :: Name -> PhoneBook -> Maybe PhoneNumber
 findKeyf key = foldr (\(k,v) acc -> if k == key then Just v else acc) Nothing
 
 -- lookup "patsy" phoneBook
 
+inPhoneBook :: Name -> PhoneNumber -> PhoneBook -> Bool  
+inPhoneBook name number pbook = (name, number) `elem` pbook
+
+-- findKeyf "betty" phoneBook
