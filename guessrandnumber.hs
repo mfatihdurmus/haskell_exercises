@@ -16,4 +16,4 @@ main = do
             then putStrLn "Correct!"
             else putStrLn $ "Sorry, it was " ++ show randomNumber
         newStdGen
-        main
+        main 
